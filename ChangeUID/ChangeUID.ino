@@ -77,20 +77,6 @@ void loop() {
     Serial.print(mfrc522.uid.uidByte[i], HEX);
   } 
   Serial.println();
-
-  // Dump PICC type
-//  MFRC522::PICC_Type piccType = mfrc522.PICC_GetType(mfrc522.uid.sak);
-//  Serial.print(F("PICC type: "));
-//  Serial.print(mfrc522.PICC_GetTypeName(piccType));
-//  Serial.print(F(" (SAK "));
-//  Serial.print(mfrc522.uid.sak);
-//  Serial.print(")\r\n");
-//  if (  piccType != MFRC522::PICC_TYPE_MIFARE_MINI 
-//    &&  piccType != MFRC522::PICC_TYPE_MIFARE_1K
-//    &&  piccType != MFRC522::PICC_TYPE_MIFARE_4K) {
-//    Serial.println(F("This sample only works with MIFARE Classic cards."));
-//    return;
-//  }
   
   // Set new UID
   byte newUid[] = NEW_UID;

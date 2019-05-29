@@ -40,10 +40,13 @@ void setup() {
 void loop() {
   if (rc522Utilities.detectNewCard()) {
     rc522Utilities.formatToNDEF(&rc522Utilities.NFCDefaultKeyB, &rc522Utilities.NFCDefaultKeyB);
+    // sector 0 block 0
+    byte dataBlock0[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x07, 0x80, 0x69, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+    
     // sector 0 block 1
     byte dataBlock1[] = {0x00, 0x00, 0x00, 0x42, 0x53, 0x61, 0x00, 0x59, 0x13, 0x81, 0x00, 0x03, 0x00, 0x00, 0x96, 0x01};
     // sector 0 block 2 
-    byte dataBlock2[] = {0x00, 0x09, 0x42, 0x00, 0x03, 0x00, 0x03, 0x00, 0x00, 0x14, 0x00, 0xF0, 0x00, 0x00, 0x00, 0xCC};
+    byte dataBlock2[] = {0x00, 0x02, 0x42, 0x00, 0x03, 0x00, 0x03, 0x00, 0x00, 0x14, 0x00, 0xF0, 0x00, 0x00, 0x00, 0xCC};
     //sector 1 block 4 
     byte dataBlock4[] = {0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0xFF, 0x1E, 0x99, 0x99, 0x90, 0x00, 0x00, 0x00}; 
     // sector 1 block 5 
@@ -86,7 +89,7 @@ void loop() {
     // sector 5 block 22 
     //                    00    00    00    42    53    61    00    00    00    00    00    05    19    0A    00    26
     byte dataBlock22[] = {0x00, 0x00, 0x00, 0x42, 0x53, 0x61, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05, 0x19, 0x0A, 0x00, 0x26};
-    
+
     rc522Utilities.writeBlock(0, 1, dataBlock1, &rc522Utilities.NFCKeyB);
     rc522Utilities.writeBlock(0, 2, dataBlock2, &rc522Utilities.NFCKeyB);
     rc522Utilities.writeBlock(1, 4, dataBlock4, &rc522Utilities.NFCKeyB);
@@ -104,6 +107,6 @@ void loop() {
     rc522Utilities.writeBlock(5, 20, dataBlock20, &rc522Utilities.NFCKeyB);
     rc522Utilities.writeBlock(5, 21, dataBlock21, &rc522Utilities.NFCKeyB);
     rc522Utilities.writeBlock(5, 22, dataBlock22, &rc522Utilities.NFCKeyB);
-    rc522Utilities.printAllSectors(&rc522Utilities.MADKeyA, &rc522Utilities.NFCKeyA);
+    //rc522Utilities.printAllSectors(&rc522Utilities.MADKeyA, &rc522Utilities.NFCKeyA);
   }
 }
