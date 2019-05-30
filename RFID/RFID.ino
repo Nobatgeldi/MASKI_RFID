@@ -87,7 +87,7 @@ void loop()
 		//                    00    00    00    42    53    61    00    00    00    00    00    05    19    0A    00    26
 		byte dataBlock22[] = { 0x00, 0x00, 0x00, 0x42, 0x53, 0x61, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05, 0x19, 0x0A, 0x00, 0x26 };*/
 
-		rc522Utilities.writeBlock(0, 2, dataBlock2, &keyB);
+		//rc522Utilities.writeBlock(0, 2, dataBlock2, &keyB);
 		/*rc522Utilities.writeBlock(0, 2, dataBlock2, &keyB);
 		rc522Utilities.writeBlock(1, 4, dataBlock4, &keyB);
 		rc522Utilities.writeBlock(1, 5, dataBlock5, &keyB);

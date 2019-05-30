@@ -26,7 +26,7 @@ void setup() {
 	while (!Serial);     // Do nothing if no serial port is opened (added for Arduinos based on ATMEGA32U4)
 	SPI.begin();         // Init SPI bus
 	mfrc522.PCD_Init();  // Init MFRC522 card
-	Serial.println(F("Warning: this code change your mifare UID, use with care!"));
+	Serial.println(F("Warning: this code change Tag Sector 0 Block 0, use with care!"));
 }
 
 void loop() 
