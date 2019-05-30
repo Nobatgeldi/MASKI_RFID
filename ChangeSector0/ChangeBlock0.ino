@@ -26,21 +26,35 @@ void setup() {
 	while (!Serial);     // Do nothing if no serial port is opened (added for Arduinos based on ATMEGA32U4)
 	SPI.begin();         // Init SPI bus
 	mfrc522.PCD_Init();  // Init MFRC522 card
-	Serial.println(F("Warning: this coede change your mifare UID, use with care!"));
+	Serial.println(F("Warning: this code change your mifare UID, use with care!"));
 }
 
-void loop() {
-	if (MIFARE_UnbrickUidSector(true)) {
-		Serial.println(F("Cleared sector 0, set UID to 1234. Card should be responsive again now."));
+void loop() 
+{
+	// Reset the loop if no new card present on the sensor/reader. This saves the entire process when idle. And if present, select one.
+	if (!mfrc522.PICC_IsNewCardPresent() || !mfrc522.PICC_ReadCardSerial()) {
+		delay(50);
+		return;
 	}
+	// Dump UID
+	Serial.print(F("Card UID:"));
+	for (byte i = 0; i < mfrc522.uid.size; i++) {
+		Serial.print(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " ");
+		Serial.print(mfrc522.uid.uidByte[i], HEX);
+	}
+	Serial.println();
+
+	if (MIFARE_UnbrickUidSector(true, block0_buffer)) 
+	{
+		Serial.println(F("Sector 0 Block 0 changed changed."));
+	}
+
 	delay(1000);
 }
 
-bool MIFARE_UnbrickUidSector(bool logErrors) {
+bool MIFARE_UnbrickUidSector(bool logErrors, byte block0_buffer[]) 
+{
 	mfrc522.MIFARE_OpenUidBackdoor(logErrors);
-
-	//byte block0_buffer[] = {0x01, 0x02, 0x03, 0x04, 0x04, 0x08, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-	byte block0_buffer[] = { 0x1E, 0x23, 0x02, 0x7d, 0x42, 0x08, 0x04, 0x00, 0x01, 0x5A, 0x25, 0xCE, 0x3E, 0xF3, 0x25, 0x1D };
 
 	// Write modified block 0 back to card
 	MFRC522::StatusCode status = mfrc522.MIFARE_Write((byte)0, block0_buffer, (byte)16);
