@@ -14,7 +14,7 @@
     <ProjectGuid>{3BF167FA-E2CE-45CB-82C9-3E64A1015069}</ProjectGuid>
     <RootNamespace>
     </RootNamespace>
-    <ProjectName>ChangeSector0</ProjectName>
+    <ProjectName>ChangeBlock0</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
