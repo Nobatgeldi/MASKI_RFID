@@ -91,7 +91,7 @@ void RFID_Utilities::copyBytesToKey(byte *array, MFRC522::MIFARE_Key *key)
 void RFID_Utilities::printSector(byte sector, MFRC522::MIFARE_Key *keyA, MFRC522::MIFARE_Key *keyB)
 {
 	byte trailerBlock = sector * 4 + 3; // get the trailer block
-	Serial.println(F("Authenticating using key B..."));
+	//Serial.println(F("Authenticating using key B..."));
 	MFRC522::StatusCode status = mfrc522->PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_B, trailerBlock, keyB, &(mfrc522->uid));
 	if (status != MFRC522::STATUS_OK) {
 		Serial.print(F("PCD_Authenticate() failed: "));

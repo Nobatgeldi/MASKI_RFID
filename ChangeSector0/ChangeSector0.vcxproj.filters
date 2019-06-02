@@ -15,11 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ChangeSector0.ino" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="__vm\.ChangeSector0.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ChangeBlock0.ino" />
   </ItemGroup>
 </Project>

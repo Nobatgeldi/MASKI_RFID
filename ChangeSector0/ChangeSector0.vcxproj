@@ -101,7 +101,7 @@
     <ProjectCapability Include="VisualMicro" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ChangeSector0.ino">
+    <None Include="ChangeBlock0.ino">
       <FileType>CppCode</FileType>
     </None>
   </ItemGroup>
